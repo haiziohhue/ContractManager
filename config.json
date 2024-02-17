@@ -1,0 +1,6 @@
+{
+    "savePath":"static",
+    "serverPort":3000,
+    "loginPWD":"123456",
+    "jwtSecret":"123456a"
+}
