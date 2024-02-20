@@ -43,10 +43,10 @@ export const ListItem = (prop: EntityContract) => {
         <div>{dateSwitch(prop.contractDate)}</div>
 
         <img src={`/rowfiles/${prop.coverImgName}`} alt="无封面" />
-        <div>
+        <div>{prop.contractPdfName?
           <a href="#" onClick={downloadPDF} style={{margin:'0 12px'}}>
             下载PDF
-          </a>
+          </a>:null}
           <a href="#" onClick={deleteRecord}>
             {" "}
             删除记录

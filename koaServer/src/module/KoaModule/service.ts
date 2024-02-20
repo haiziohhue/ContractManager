@@ -27,19 +27,25 @@ export const login = (ctx) => {
 export const upload = async (ctx) => {
   const files = ctx.request.files;
   const { title, keyword,contractDate,firstCompany,secondCompany } = ctx.request.body;
-  const { img, pdf } = files;
   const contract = new EntityContract();
+  try{
+    const { img, pdf } = files;
+    if(img){
+      contract.coverImgName = img.newFilename ?? null;
+      contract.coverImgPath = img.filepath ?? null;
+    }
+    if(pdf){
+      contract.contractPdfName = pdf.newFilename ?? null;
+      contract.contractPdfPath = pdf.filepath ?? null;
+    }
+  }catch{}
+
 
   contract.title = title ?? null;
   contract.keyword = keyword ?? null;
   contract.contractDate = contractDate ?? null;
   contract.firstCompany = firstCompany ?? null;
   contract.secondCompany = secondCompany ?? null;
-
-  contract.contractPdfName = pdf.newFilename ?? null;
-  contract.contractPdfPath = pdf.filepath ?? null;
-  contract.coverImgName = img.newFilename ?? null;
-  contract.coverImgPath = img.filepath ?? null;
 
   contract.createTime = new Date().toString();
   contract.totalText = `
@@ -48,8 +54,8 @@ export const upload = async (ctx) => {
   ${contractDate??""}
   ${firstCompany??""}
   ${secondCompany??""}
-  ${pdf.newFilename??""}
-  ${img.newFilename??""}
+  ${contract.contractPdfName??""}
+  ${contract.coverImgName??""}
   `;
 
   const res = await connection.save(contract);
