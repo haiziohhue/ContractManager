@@ -30,3 +30,6 @@ export const downloadFile = async (name:string)=>{
     responseType: 'blob',
   });
 }
+export const update = async (id: number,body:EntityContract) => {
+  return await axios.put(`/api/file/${id}`,body);
+}

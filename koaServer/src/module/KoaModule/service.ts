@@ -82,3 +82,11 @@ export const deleteById = async (ctx) => {
     ctx.body = { code: 1, msg: "删除失败" };
   }
 };
+export const update =async (ctx)=>{
+  try {
+    await connection.update(ctx.params.id, ctx.request.body);
+    ctx.body = { code: 0, msg: "保存成功" };
+  } catch {
+    ctx.body = { code: 1, msg: "保存失败" };
+  }
+}

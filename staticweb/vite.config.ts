@@ -9,15 +9,15 @@ export default ({ command }) => {
     server: {
       proxy: isProduction ? {} : {
         '/login': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:8019',
           changeOrigin: true,
         },
         '/api': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:8019',
           changeOrigin: true,
         },
         '/rowfiles': {
-          target: 'http://localhost:3000',
+          target: 'http://localhost:8019',
           changeOrigin: true,
         },
       },

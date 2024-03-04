@@ -37,7 +37,7 @@ font-family: '微软雅黑'
   border-bottom: 1px solid #ccc;
   overflow: hidden;
 }
-.row>div{
+.row>:nth-child(n){
     text-wrap: wrap;
     min-width:40px;
     text-overflow: ellipsis;

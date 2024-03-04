@@ -8,7 +8,13 @@ export const List = ()=>{
     const [files,setFiles]=useState<EntityContract[]>([])
     useEffect(()=>{
         getFiles({}).then(res=>{
-            setFiles(res.data.data)
+            const data = res.data.data.sort((a,b)=>{
+                if(a.contractDate&&b.contractDate){
+                    return Number(new Date(a.contractDate).getTime()<new Date(b.contractDate).getTime());
+                }
+                else{return Number(new Date(a.createTime).getTime()<new Date(b.createTime).getTime())}
+            })
+            setFiles(data)
         })
     },[])
     return <>
